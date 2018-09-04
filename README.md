@@ -1,1 +1,1 @@
-# lb-react-native
+# lb-react
