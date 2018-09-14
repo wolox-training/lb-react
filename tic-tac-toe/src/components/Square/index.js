@@ -2,12 +2,10 @@ import React from 'react';
 
 import style from './styles.scss';
 
-export default class Square extends React.Component {
-  render() {
-    return (
-      <button className={style.square} onClick={() => this.props.onClick()}>
-        {this.props.value}
-      </button>
-    );
-  }
+export default function Square(props) {
+  return (
+    <button className={style.square} onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
