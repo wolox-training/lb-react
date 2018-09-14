@@ -4,28 +4,25 @@ import Board from '../Board';
 
 import style from './styles.scss';
 
-export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null)
-        }
-      ],
-      stepNumber: 0,
-      xIsNext: true
-    };
-  }
+class Game extends React.Component {
+  state = {
+    history: [
+      {
+        squares: Array(9).fill(null)
+      }
+    ],
+    stepNumber: 0,
+    xIsNext: true
+  };
 
-  handleClick(i) {
+  handleClick(squareIndex) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) {
+    if (this.calculateWinner(squares) || squares[squareIndex]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[squareIndex] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([
         {
@@ -62,30 +59,28 @@ export default class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
+      function onClick() {
+        this.jumpTo(move);
+      }
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={move}>{desc}</button>
         </li>
       );
     });
 
-    let status;
-    if (winner) {
-      status = `Winner: ${winner}`;
-    } else {
-      status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
-    }
+    const status = winner ? `Winner: ${winner}` : `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
 
     return (
       <div className={style.game}>
-        <div className={style.gameBoard}>
-          <Board squares={current.squares} onClick={i => this.handleClick(i)} />
-        </div>
+        <Board squares={current.squares} onClick={i => this.handleClick(i)} />
         <div className={style.gameInfo}>
-          <div>{status}</div>
+          <span>{status}</span>
           <ol>{moves}</ol>
         </div>
       </div>
     );
   }
 }
+
+export default Game;
