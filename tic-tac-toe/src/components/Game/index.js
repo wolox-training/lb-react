@@ -2,7 +2,7 @@ import React from 'react';
 
 import Board from '../Board';
 
-import style from './styles.scss';
+import './styles.css';
 
 class Game extends React.Component {
   state = {
@@ -72,11 +72,11 @@ class Game extends React.Component {
     const status = winner ? `Winner: ${winner}` : `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
 
     return (
-      <div className={style.game}>
+      <div className="game">
         <Board squares={current.squares} onClick={i => this.handleClick(i)} />
-        <div className={style.gameInfo}>
+        <div className="gameInfo">
           <span>{status}</span>
-          <ol>{moves}</ol>
+          <ol className="moveList">{moves}</ol>
         </div>
       </div>
     );

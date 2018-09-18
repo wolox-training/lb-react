@@ -1,0 +1,17 @@
+.boardTable {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 300px;
+  height: 300px;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.board-row::after {
+  clear: both;
+  content: "";
+  display: grid;
+}
+
+.status {
+  margin-bottom: 10px;
+}
