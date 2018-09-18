@@ -5,10 +5,10 @@ import Square from '../Square';
 import './styles.css';
 
 class Board extends React.Component {
-  renderSquare = squareIndex => (
-    <Square value={this.props.squares[squareIndex]} const onClick={() => this.props.onClick(squareIndex)} />
-  );
-
+  renderSquare = squareIndex => {
+    const onClick = () => this.props.onClick(squareIndex);
+    return <Square value={this.props.squares[squareIndex]} onClick={onClick} />;
+  };
   render() {
     return (
       <div className="boardTable">
