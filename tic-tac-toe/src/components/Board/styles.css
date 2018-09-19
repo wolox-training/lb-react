@@ -6,12 +6,6 @@
   grid-template-rows: repeat(3, 1fr);
 }
 
-.board-row::after {
-  clear: both;
-  content: "";
-  display: grid;
-}
-
 .status {
   margin-bottom: 10px;
 }

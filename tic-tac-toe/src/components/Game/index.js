@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Board from '../Board';
 
 import './styles.css';
 
-class Game extends React.Component {
+class Game extends Component {
   state = {
     history: [
       {
@@ -56,7 +56,6 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = this.calculateWinner(current.squares);
-
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
       function onClick() {
@@ -68,9 +67,7 @@ class Game extends React.Component {
         </li>
       );
     });
-
     const status = winner ? `Winner: ${winner}` : `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
-
     return (
       <div className="game">
         <Board squares={current.squares} onClick={i => this.handleClick(i)} />
