@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Board from '../Board';
 
 import './styles.css';
 
 class Game extends Component {
-  state = {
-    history: [
-      {
-        squares: Array(9).fill(null)
-      }
-    ],
-    stepNumber: 0,
-    xIsNext: true
-  };
+  state = {};
 
   handleClick(squareIndex) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
@@ -80,4 +73,8 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({
+  history: state.history
+});
+
+export default connect()(Game);
