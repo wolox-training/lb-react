@@ -77,4 +77,4 @@ const mapStateToProps = state => ({
   history: state.history
 });
 
-export default connect()(Game);
+export default connect(mapStateToProps)(Game);
