@@ -1,13 +1,10 @@
-import React, {Component} from 'react';
+import { createStore } from 'redux';
 
-class Store extends Component {
-  history: {
-    [
-      {
-        squares: Array(9).fill(null)
-      }
-    ],
-    stepNumber: 0,
-    xIsNext: true
-  };
-}
+import { reducer } from './tic-tac-toe/reducer';
+
+/* eslint-disable no-underscore-dangle */
+export default createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+/* eslint-enable */

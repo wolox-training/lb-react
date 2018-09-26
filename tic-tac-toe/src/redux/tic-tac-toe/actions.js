@@ -1,10 +1,19 @@
 const EDIT_TILE = 'EDIT_TILE';
+const JUMP_TO = 'JUMP_TO';
 
-export function editTile(number, player) {
-  return {
-    type: EDIT_TILE,
-    payload: player
-  };
-}
+const actionCreators = {
+  editTile(gameState) {
+    return {
+      type: EDIT_TILE,
+      payload: { gameState }
+    };
+  },
+  jumpTo(step, xIsNext) {
+    return {
+      tyoe: JUMP_TO,
+      payload: { step, xIsNext }
+    };
+  }
+};
 
-dispatch(editTitle(number, player));
+export default actionCreators;
