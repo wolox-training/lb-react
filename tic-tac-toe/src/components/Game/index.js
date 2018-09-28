@@ -3,39 +3,37 @@ import { connect } from 'react-redux';
 
 import Board from '../Board';
 import * as TicTacToeActions from '../../redux/tic-tac-toe/actions';
-import { utils } from '../../utils/utils';
+import * as utils from '../../utils/utils';
 
 import './styles.css';
 
 class Game extends Component {
   state = {};
 
-  componentDidMount() {
-    this.props.dispatch(TicTacToeActions.editTile('', ''));
-  }
-
-  jumpTo(step) {
+  jumpTo = step => {
     this.props.dispatch(TicTacToeActions.jumpTo(step, step % 2 === 0));
-  }
+  };
 
-  handleClick(squareIndex) {
+  handleClick = squareIndex => {
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
-    const squares = current.squares.slice();
+    const squares = [...current.squares.slice()];
     if (utils.calculateWinner(squares) || squares[squareIndex]) {
       return;
     }
     squares[squareIndex] = this.props.xIsNext ? 'X' : 'O';
-    this.props.dispatch({
-      history: history.concat([
-        {
-          squares
-        }
-      ]),
-      stepNumber: history.length,
-      xIsNext: !this.props.xIsNext
-    });
-  }
+    this.props.dispatch(
+      TicTacToeActions.editTile({
+        history: history.concat([
+          {
+            squares
+          }
+        ]),
+        stepNumber: history.length,
+        xIsNext: !this.props.xIsNext
+      })
+    );
+  };
 
   render() {
     const history = this.props.history;
@@ -44,7 +42,7 @@ class Game extends Component {
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
       function onClick() {
-        this.jumpTo(move);
+        this.jumpTo(step, move);
       }
       return (
         <li key={move}>
@@ -55,7 +53,7 @@ class Game extends Component {
     const status = winner ? `Winner: ${winner}` : `Next player: ${this.props.xIsNext ? 'X' : 'O'}`;
     return (
       <div className="game">
-        <Board squares={current.squares} onClick={i => this.handleClick(i)} />
+        <Board squares={current.squares} onClick={this.handleClick} />
         <div className="gameInfo">
           <span>{status}</span>
           <ol className="moveList">{moves}</ol>
