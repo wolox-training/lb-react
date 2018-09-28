@@ -63,10 +63,12 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  history: store.history,
-  stepNumber: store.stepNumber,
-  xIsNext: store.xIsNext
-});
-
+const mapStateToProps = store => {
+  debugger //eslint-disable-line
+  return {
+    history: store.reducer.history,
+    stepNumber: store.reducer.stepNumber,
+    xIsNext: store.reducer.xIsNext
+  };
+};
 export default connect(mapStateToProps)(Game);
