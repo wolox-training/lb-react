@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const ContactForm = props => {
+function ContactForm(props) {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -20,7 +20,7 @@ const ContactForm = props => {
       <button type="submit">Submit</button>
     </form>
   );
-};
+}
 export default reduxForm({
   form: 'contact'
 })(ContactForm);
