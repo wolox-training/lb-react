@@ -17,18 +17,14 @@ class Game extends Component {
   handleClick = squareIndex => {
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
-    const squares = [...current.squares.slice()];
+    const squares = [...current.squares];
     if (utils.calculateWinner(squares) || squares[squareIndex]) {
       return;
     }
     squares[squareIndex] = this.props.xIsNext ? 'X' : 'O';
     this.props.dispatch(
       TicTacToeActions.editTile({
-        history: history.concat([
-          {
-            squares
-          }
-        ]),
+        history: [...history, { squares }],
         stepNumber: history.length,
         xIsNext: !this.props.xIsNext
       })
@@ -63,12 +59,9 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  debugger //eslint-disable-line
-  return {
-    history: store.reducer.history,
-    stepNumber: store.reducer.stepNumber,
-    xIsNext: store.reducer.xIsNext
-  };
-};
+const mapStateToProps = store => ({
+  history: store.reducer.history,
+  stepNumber: store.reducer.stepNumber,
+  xIsNext: store.reducer.xIsNext
+});
 export default connect(mapStateToProps)(Game);

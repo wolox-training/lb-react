@@ -22,6 +22,5 @@ const ContactForm = props => {
   );
 };
 export default reduxForm({
-  // a unique name for the form
   form: 'contact'
 })(ContactForm);
