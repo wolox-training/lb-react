@@ -7,13 +7,13 @@ import registerServiceWorker from './registerServiceWorker';
 import Game from './components/Game';
 import store from './redux/store';
 
-// store.dispatch({ type: 'EDIT_TILE' });
-
-const App = () => (
-  <Provider store={store}>
-    <Game />
-  </Provider>
-);
+function App() {
+  return (
+    <Provider store={store}>
+      <Game />
+    </Provider>
+  );
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
