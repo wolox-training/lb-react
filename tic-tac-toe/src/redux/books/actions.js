@@ -1,3 +1,5 @@
+import { createTypes } from 'redux-recompose';
+
 import BookService from '../../services/BookService';
 
 export const actions = createTypes(['GET_BOOKS', 'GET_BOOKS_SUCCESS', 'GET_BOOKS_FAILURE'], '@@BOOKS');
