@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Board from '../Board';
 import * as TicTacToeActions from '../../redux/tic-tac-toe/actions';
@@ -30,6 +31,9 @@ class Game extends Component {
   };
 
   render() {
+    if (!this.props.loggedUser) {
+      <Redirect to="/" />;
+    }
     const history = this.props.history;
     const current = history[this.props.stepNumber];
     const winner = utils.calculateWinner(current.squares);
