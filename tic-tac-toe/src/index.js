@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import './scss/index.scss';
 import registerServiceWorker from './registerServiceWorker';
@@ -11,10 +12,13 @@ import store from './redux/store';
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <LoginPage />
-        <Game />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Route path="/game" component={Game} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }

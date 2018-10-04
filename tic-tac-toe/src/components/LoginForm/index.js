@@ -17,6 +17,7 @@ function LoginForm(props) {
     </form>
   );
 }
+
 export default reduxForm({
   form: 'login'
 })(LoginForm);

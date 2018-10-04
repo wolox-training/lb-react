@@ -2,10 +2,12 @@ import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 import { reducer } from './tic-tac-toe/reducer';
+import { loginReducer } from './login/reducer';
 
 const rootReducer = combineReducers({
   reducer,
-  form: formReducer
+  form: formReducer,
+  login: loginReducer
 });
 
 /* eslint-disable no-underscore-dangle */
