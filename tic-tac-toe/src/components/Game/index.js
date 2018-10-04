@@ -31,9 +31,6 @@ class Game extends Component {
   };
 
   render() {
-    if (!this.props.loggedUser) {
-      return <Redirect to="/" />;
-    }
     const history = this.props.history;
     const current = history[this.props.stepNumber];
     const winner = utils.calculateWinner(current.squares);

@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Game from './components/Game';
 import LoginPage from './components/LoginPage';
 import store from './redux/store';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route path="/game" component={Game} />
+          <PrivateRoute path="/game" component={Game} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, Form } from 'redux-form';
 
-function LoginForm(props) {
-  const { handleSubmit } = props;
+function LoginForm({ handleSubmit }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="email">Email</label>
         <Field name="email" component="input" type="email" />
@@ -14,7 +13,7 @@ function LoginForm(props) {
         <Field name="password" component="input" type="password" />
       </div>
       <button type="submit">Submit</button>
-    </form>
+    </Form>
   );
 }
 
