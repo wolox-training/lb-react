@@ -1,9 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import './scss/index.scss';
 import registerServiceWorker from './registerServiceWorker';
-import Game from './components/Game'; // eslint-disable-line import/first
+import Game from './components/Game';
+import store from './redux/store';
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+function App() {
+  return (
+    <Provider store={store}>
+      <Game />
+    </Provider>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
