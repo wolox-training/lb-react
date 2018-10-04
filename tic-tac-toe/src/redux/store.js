@@ -1,18 +1,23 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 
 import { reducer } from './tic-tac-toe/reducer';
-import { reducer as loginReducer } from './login/reducer';
+
+export const history = createHistory();
 
 const rootReducer = combineReducers({
   reducer,
   form: formReducer,
-  login: loginReducer
+  router: routerReducer
 });
 
 /* eslint-disable no-underscore-dangle */
-export default createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const middlewares = [routerMiddleware(history)];
+
+const enhancers = [applyMiddleware(...middlewares)];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export default createStore(rootReducer, composeEnhancers(...enhancers));
 /* eslint-enable */

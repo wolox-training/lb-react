@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
+    "react-router-redux": "^4.0.8",
     "wolox-react-scripts": "1.2.1"
   },
   "scripts": {
