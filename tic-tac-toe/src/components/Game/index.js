@@ -32,7 +32,7 @@ class Game extends Component {
 
   render() {
     if (!this.props.loggedUser) {
-      <Redirect to="/" />;
+      return <Redirect to="/" />;
     }
     const history = this.props.history;
     const current = history[this.props.stepNumber];
