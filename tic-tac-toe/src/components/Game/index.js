@@ -8,8 +8,6 @@ import * as utils from '../../utils/utils';
 import './styles.css';
 
 class Game extends Component {
-  state = {};
-
   jumpTo = step => {
     this.props.dispatch(TicTacToeActions.jumpTo(step, step % 2 === 0));
   };
