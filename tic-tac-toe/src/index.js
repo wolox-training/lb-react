@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 
 import './scss/index.scss';
 import registerServiceWorker from './registerServiceWorker';
 import Game from './components/Game';
-import ContactPage from './components/ContactPage';
+import LoginPage from './components/LoginPage';
 import store from './redux/store';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <ContactPage />
-        <Game />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <PrivateRoute path="/game" component={Game} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }
