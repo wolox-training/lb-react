@@ -3,14 +3,11 @@ import React, { Component } from 'react';
 import fetchData from '../../services/itemService';
 
 class ItemList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      items: [],
-      hasErrored: false,
-      isLoading: false
-    };
-  }
+  state = {
+    items: [],
+    hasErrored: false,
+    isLoading: false
+  };
 
   componentDidMount() {
     fetchData.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
